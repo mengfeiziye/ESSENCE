@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>零宽断言</title>
+</head>
+<body>	
+<script>
+	// 正先行断言 (?=exp) 匹配exp前面的位置 (字符串相应位置之前进行匹配查找)
+	
+	/**
+	 * 首先查找字符串中gw位置，断言为真，然后再匹配bc。
+	 */
+	var $str1 = "I'm singing while you're dancing";
+	var $reg1 = /\b\w+(?=ing\b)/g;
+	console.log($str1.match($reg1));
+
+
+	// 反先行断言 (?!exp) 匹配后面跟的不是exp (字符串相应位置之前进行匹配查找)
+	
+	/**
+	 * 首先判断字符串是否包含bc，然后判断其后面是否跟的是ww，最后匹配gw
+	 */
+	var $str2 = "abcgwcab";
+	var $reg2 = /bc(?!ww)gw/g;
+	console.log($str2.match($reg2));
+
+
+	// 正后发断言 (?<=exp) 匹配exp后面的位置 (字符串相应位置之后进行匹配查找)
+	
+	/**
+	 * 首先查找字符串中是否包含有gw，如果有
+	 * 第二步，查找gw后面是否有ca
+	 */
+	var $str3 = "reading a book";
+	var $reg3 = /(?<=\bre)\w+\b/g;
+	console.log($str3.match($reg3));
+
+
+	// 反后发断言 (?<!exp) 匹配exp后面的位置
+	
+	/**
+	 * 首先查找字符串"abcgwcab"中是否包含有gw，如果有
+	 * 第二步，查找gw前面是否有bc，如果有，返回false
+	 */
+	var $str4 = "abcgwcab";
+	var $reg4 = /(?<!bc)gw/g;
+	console.log($str4.match($reg4));
+
+
+// ==================================================================	
+
+	// 正向零宽断言
+	
+	/**
+	 * 首先由正则中的"^"获取控制权，由位置0开始进行匹配，匹配成功
+	 * 然后控制权转交给"(?=<)"，由于"^"是零宽的，所以"(?=<)"也是从位置0处开始匹配，它要求所在的位置右侧必须是字符"<"，位置0的右侧恰好是字符"<"，匹配成功
+	 * 然后控制权转交给"<",由于"(?=<)"也是零宽的，所以它也是从位置0处开始匹配
+	 */
+	var str1 = "<div>antzone";
+	var reg1 = /^(?=<)<[^>]+>\w+/;
+	console.log(str1.match(reg1));
+
+
+	// 负向零宽断言
+	
+	var str2 = "abZW863ab88";
+	var reg2 = /ab(?<![A-Z])/;
+	console.log(str2.match(reg2));
+
+
+
+
+
+</script>	
+</body>
+</html>

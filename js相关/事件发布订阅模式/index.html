@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件发布订阅模式</title>
+</head>
+<body>
+
+<div>
+	<h3>什么是观察者模式（订阅者与发布者）？</h3>
+	<h4>观察者模式又叫做发布订阅模式，它定义了一种一对多的关系，让多个观察者对象同时监听某一个主题对象，这个主题对象的状态发生改变时就会通知所有观察着对象。它是由两类对象组成，主题和观察者，主题负责发布事件，同时观察者通过订阅这些事件来观察该主体，发布者和订阅者是完全解耦的，彼此不知道对方的存在，两者仅仅共享一个自定义事件的名称。</h4>
+</div>
+
+<div>
+	<h4>理解观察者模式：</h4>
+	<h5>JS传统事件就是一个观察者模式，之所以要有观察者模式，是因为有时候和传统事件无关的事件，比如：2个或者更多模块的直接通信问题，比如说我有个index.html页面，我有很多JS文件，比如：</h5>
+	<p>a.js: function a(){};    b.js: function b(){};  c.js  function c(){};  等等。后面还有许多这样的JS， 那么我要在index.html初始化这些函数的话，我需要这样调用a();b();c()等等，也就是说页面调用的时候 我要这样调用，增加了依赖性，我要知道有多少个函数要这样初始化调用，但是如果我们现在用观察者模式就不需要知道有哪些订阅者，比如一个模块(或者多个模块)订阅了一个主题(或者事件)，另一个模块发布这个主题时候，订阅这个主题模块就可以执行了，观察者主要让订阅者与发布者解耦，发布者不需要知道哪些模块订阅了这个主题，它只管发布这个主题就可以了，同样订阅者也无需知道那个模块会发布这个主题，它只管订阅这个主题就可以了。这样2个模块(或更多模块)就实现了关联了。而不需要和上面代码一样，我要知道哪些模块要初始化，我要怎样初始化。这只是一个简单的列子解释观察者模式要使用在什么地方，我也看过很多博客关于这方面的资料，但是很多人写博客只是讲了如何实现观察者模式及观察者模式的好处，并没有讲我们什么时候该使用观察者模式，所以我列举了上面的列子，就是多个不同业务模块需要相互关联的时候，可以使用观察者模式。就好比requireJS，seaJS，KISSY解决依赖的问题一样(比如A依赖于B，B依赖于C，只要一个解决入口文件，其他都会异步加载出来一样)。也就是说各个模块之间的关联性可以使用观察者模式来设计。</p>
+</div>
+
+
+<script>
+	function PubSub() {
+		this.handlers = {};
+	}
+	PubSub.prototype = {
+		// 订阅事件
+		on: function(eventType,handler){
+			var self = this;
+			if(!(eventType in self.handlers)) {
+				 self.handlers[eventType] = [];
+			}
+			self.handlers[eventType].push(handler);
+			return this;
+		   },
+	   // 触发事件(发布事件)
+	   emit: function(eventType){
+		   var self = this;
+		   var handlerArgs = Array.prototype.slice.call(arguments,1);
+		   for(var i = 0; i < self.handlers[eventType].length; i++) {
+				 self.handlers[eventType][i].apply(self,handlerArgs);
+		   }
+		   return self;
+	   }
+	};
+
+	// 调用方式如下：
+
+	var pubsub = new PubSub();
+
+	pubsub.on('A',function(data){
+
+	console.log(1 + data);  // 执行第一个回调业务函数
+
+	});
+
+	pubsub.on('A',function(data){
+
+	console.log(2 + data); // 执行第二个业务回调函数
+
+	});
+
+	pubsub.on('B',function(data){
+
+	console.log(3 + data); // 执行第二个业务回调函数
+
+	});
+
+	// 触发事件A
+
+	pubsub.emit('A',"我是参数");
+
+	pubsub.emit('B',"我是参数");
+
+</script>
+	
+</body>
+</html>

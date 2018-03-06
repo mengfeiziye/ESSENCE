@@ -1,0 +1,3 @@
+resizeTable 兼容主流浏览器谷歌火狐IE6等
+
+table 不兼容火狐

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>中间同时向两端扩展动画</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+		}
+		ul,li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.wrapper{
+			padding: 5px;
+		}
+		.menu{
+			display: flex;
+			box-sizing: border-box;
+		}
+		.menu li{
+			flex: 1;
+			height: 44px;
+			line-height: 44px;
+			padding: 0 5px;
+			text-align: center;
+		}
+		.menu li a{
+			position: relative;
+			display: block;
+			height: 100%;
+			color: #00aeff;
+		}
+		.menu li a::before{
+			content: "";
+			position: absolute;
+			z-index: -1;
+			left: 50%;
+			right: 50%;
+			bottom:0;
+			background: #00aeff;
+			height: 3px; 
+			transition: all .5s ease-in-out;
+		}
+		.menu li a:hover::before{
+			left: 0;
+			right: 0;
+		}
+
+		.box{
+			width:40px;
+			height:30px;
+			margin:20px;
+			border:1px solid #ccc;
+			transition: all .5s ease-in-out;
+		}
+		.active{
+			width:100px;
+			height:80px;
+			border-radius:10px;
+			border:1px solid red;
+			background:skyblue;
+			transition: all .5s ease-in-out;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="wrapper">
+		<ul class="menu">
+			<li class="menu-item"><a href="#">首页</a></li>
+			<li class="menu-item"><a href="#">API</a></li>
+			<li class="menu-item"><a href="#">聚合会员</a></li>
+			<li class="menu-item"><a href="#">聚合代码</a></li>
+			<li class="menu-item"><a href="#">新闻动态</a></li>
+		</ul>
+	</div>
+
+	<div class="box" id="btn"></div>
+	
+	<script>
+		var btn = document.getElementById("btn");
+		var flag = false;
+		btn.onclick = function() {
+			if (!flag) {
+				this.className = 'box active';
+				flag = !flag;
+			} else {
+				this.className = 'box';
+				flag = !flag;	
+			}
+		}
+	</script>
+	
+</body>
+</html>

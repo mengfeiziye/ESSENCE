@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>未知宽高元素水平垂直居中问题--translate方法</title>
+	<style>
+		*{margin:0px; padding:0px;}
+		html,body {width:100%; height:100%;}
+		.wrap {position:relative; width:100%; height:100%;}
+		.test {position: absolute; left:50%; bottom:10%; -webkit-transform:translate(-50%,-10%); transform:translate(-50%,-10%); padding: 5px 10px; background-color: skyblue; font-size: 16px;}
+	</style>
+</head>
+<body>
+	<!-- position 水平垂直方向上的属性值和 translate 对应方向上的绝对值相等 -->
+	<div class="wrap">
+        <span class="test">点击进入</span>
+    </div>
+			
+</body>
+</html>

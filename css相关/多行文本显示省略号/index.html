@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<title>多行文本显示省略号</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			width: 100%;
+			height: 100%;
+		}
+		div{
+			padding: 0 5px;
+		}
+		p{
+			/*height: 55px;*/
+			line-height: 18px;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div>
+		<p>“小鲜肉”C919大型客机，今年5月5日首飞成功！这意味着中国的大飞机产业进入了新的进程。C919的全称为COMAC-C9-19，C 除为中国( China) 和中国商飞( COMAC) 的首字母外，还包含了一个很美好的愿望，就是希望能与空中客车A( Airbus) 和波音B( Boeing) 形成ABC“三足鼎立”之势，共同逐鹿世界商用飞机的市场。</p>
+	</div>
+	
+</body>
+</html>

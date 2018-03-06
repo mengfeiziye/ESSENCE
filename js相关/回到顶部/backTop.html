@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回到顶部</title>
+	<style>
+		#btn1{position:fixed;bottom:10px;right:10px;}
+	</style>
+</head>
+<body>
+	<p>0000001</p>
+	<p>0000002</p>
+	<p>0000003</p>
+	<p>0000004</p>
+	<p>0000005</p>
+	<p>0000006</p>
+	<p>0000007</p>
+	<p>0000008</p>
+	<p>0000009</p>
+	<p>0000010</p>
+	<p>0000011</p>
+	<p>0000012</p>
+	<p>0000013</p>
+	<p>0000014</p>
+	<p>0000015</p>
+	<p>0000016</p>
+	<p>0000017</p>
+	<p>0000018</p>
+	<p>0000019</p>
+	<p>0000020</p>
+	<p>0000021</p>
+	<p>0000022</p>
+	<p>0000023</p>
+	<p>0000024</p>
+	<p>0000025</p>
+	<p>0000026</p>
+	<p>0000027</p>
+	<p>0000028</p>
+	<p>0000029</p>
+	<p>0000030</p>
+	<p>0000031</p>
+	<p>0000032</p>
+	<p>0000033</p>
+	<p>0000034</p>
+	<p>0000035</p>
+	<p>0000036</p>
+	<p>0000037</p>
+	<p>0000038</p>
+	<p>0000039</p>
+	<p>0000040</p>
+	<p>0000041</p>
+	<p>0000042</p>
+	<p>0000043</p>
+	<p>0000044</p>
+	<p>0000045</p>
+	<p>0000046</p>
+	<p>0000047</p>
+	<p>0000048</p>
+	<p>0000049</p>
+	<p>0000050</p>
+
+	<input id="btn" type="button" value="回到顶部" />
+	
+	<script>	
+		window.onload=function(){
+		    var oBtn=document.getElementById("btn");
+		    var timer=null;
+		    //申明一个变量看是否为系统还是用户滚动
+		    var sBys=true;
+		    window.onscroll=function(){
+		        if(!sBys){
+		            clearInterval(timer);
+		        }
+		        sBys=false;
+		    }
+		    oBtn.onclick=function(){
+		       timer = setInterval(function(){
+		            //获取scrollTop
+		            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		            //当点击按钮回到顶部时计算缓冲速度
+		            var ispeed=Math.floor(-scrollTop/8);
+		            if(scrollTop==0){
+		                clearInterval(timer)
+		            }
+		            sBys=true;
+		            document.documentElement.scrollTop=document.body.scrollTop=scrollTop+ispeed;
+		        },30)
+		    }
+		}
+
+		/*知识点：
+			1.计算速度（缓冲）向下取整
+            2.当scrollTop==0时需要清除定时器
+            3.需要判断是用户还是js操作滚动条，如果是用户操作就清除定时器
+        */
+
+	</script>
+	
+</body>
+</html>

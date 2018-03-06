@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>格式化时间</title>
+</head>
+<body>
+
+<script>
+	var date = 1469681963000;
+	var fmt = 'yyyy-MM-dd w hh:mm';
+
+	function formatDate(date, fmt) {
+	  var date = new Date(date)
+	  if (/(y+)/.test(fmt)) {
+	    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+	  }
+	  var o = {
+	    'M+': date.getMonth() + 1,
+	    'd+': date.getDate(),
+	    'w': transformWeek(date.getDay()),
+	    'h+': date.getHours(),
+	    'm+': date.getMinutes(),
+	    's+': date.getSeconds()
+	  }
+	  for (var k in o) {
+	    if (new RegExp('('+ k +')').test(fmt)) {
+	      var str = o[k] + ''
+	      console.log(RegExp.$1);
+	      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
+	    }
+	  }
+	  return fmt
+	}
+
+	function padLeftZero(str) {
+	  return ('00' + str).substr(str.length)
+	}
+
+	function transformWeek(num) {
+		switch(num) {
+			case 01:
+			return "星期一"
+			breack;
+			case 02:
+			return "星期二"
+			breack;
+			case 03:
+			return "星期三"
+			breack;
+			case 04:
+			return "星期四"
+			breack;
+			case 05:
+			return "星期五"
+			breack;
+			case 06:
+			return "星期六"
+			breack;
+			case 07:
+			return "星期日"
+			breack;
+		}
+	}
+
+	console.log(formatDate(date, fmt))
+
+</script>
+	
+</body>
+</html>
