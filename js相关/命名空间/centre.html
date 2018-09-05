@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>动态命名空间</title>
+</head>
+<body>
+  <script>
+    /**
+     * 注册命令空间 nameSpace.ns(BP.login);
+     * 接下来就可以在 BP.login 这个对象里面定义变量和函数
+     */
+    var nameSpace = nameSpace || {};
+    (function () {
+      var global = window;
+      /**
+       * @param {} nsStr
+       * @return {}
+       */
+      nameSpace.ns = function (nsStr) {
+        var parts = nsStr.split("."),
+          root = global,
+          max,
+          i;
+        for (i = 0, max = parts.length; i < max; i++) {
+          //如果不存在，就创建一个属性
+          if (typeof root[parts[i]] === "undefined") {
+            root[parts[i]] = {};
+          }
+          root = root[parts[i]];
+        }
+        return root;
+      };
+    })();
+  </script>
+  <script>
+    nameSpace.ns("BP.login"); //注册命令空间
+
+    BP.login = {
+        min_height: 660,//页面最小高度
+        min_width: 1024,//页面最小宽度
+        isIE: false,
+        init: function () {
+          console.log('成功调用命名空间内函数');
+        }
+      }
+
+    BP.login.init();
+
+  </script>
+ 
+</body>
+</html>
