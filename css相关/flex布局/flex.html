@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>flex</title>
+<style>
+.box {
+	display: flex;
+	display: -webkit-flex;
+}
+.item1, .item2, .item3 {
+	background: #FFA500;
+	padding: 10px;
+	height: 100px;
+	margin-right: 10px;
+	text-align: center;
+	flex: 1;
+}
+.item2 {
+	flex: 2 0 auto;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在子元素中，是flex-grow、flex-shrink、flex-basis这三个属性的缩写。
+默认值为“0 1 auto”
+
+ -->
+
+<div class="box">
+	<div class="item1">flex</div>
+	<div class="item2">flex-double</div>
+	<div class="item3">flex</div>
+</div>
+</body>
+</html>

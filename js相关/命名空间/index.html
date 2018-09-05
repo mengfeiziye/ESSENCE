@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>命名空间</title>
+</head>
+<body>
+  <script>
+
+  /**
+   * js 没有文件作用域 多人同时开发函数必然存在重名的可能性
+   * 但是其有函数作用域，所以我们可以把自定义的函数写到一个函数体内
+   * 这样函数内的变量、对象、函数就像在一个命名空间内一样和外界隔离
+   */
+
+
+    // 1）Object和闭包写法
+    var school; // 创建school命名空间
+    if(!school) school = {};
+    // school 立即执行函数 返回对象
+    school.Student = (function() {
+      var subject = 'English';
+      var grade = 'one';
+      function Subject(_subject) {
+        return 'this student is learning ' + (subject || _subject);
+      }
+      function Grade(_grade) {
+        return 'this student is grade ' + (grade || _grade);
+      }
+      return {
+        Subject: Subject,
+        Grade: Grade
+      };
+    })();
+
+    console.log(school.Student.Subject());
+
+    // 2）Function的简洁写法
+    var NameSpace = NameSpace || {};
+    NameSpace.Hello = new function() {
+      var self = this;
+      var name = ' world';
+      self.sayHello = function(_name) {
+        return 'Hello' + (_name || name);
+      };
+    };
+
+    console.log(NameSpace.Hello.sayHello());
+
+  </script>
+ 
+</body>
+</html>

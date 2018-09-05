@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>align-self属性</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	height: 500px;
+	width: 800px;
+	border: 1px solid #ccc;
+}
+.item1 {
+	background: red;
+}
+.item2 {
+	background: blue;
+	align-self: flex-end;
+}
+.item3 {
+	background: green;
+}
+.item1, .item2, .item3 {
+	flex: 1;
+	
+	/*padding: 10px;*/
+	/*height: 10px;*/
+	width: 100%;
+	/*margin: 10px;*/
+	text-align: center;
+	box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在子元素中，改变某个子元素在纵轴方向的布局方式，主要有以下几个属性值：
+
+auto：让某个子元素自动布局，很佛性，一般是跟着周围的子元素布局方式走；
+flex-start：让某个子元素贴着顶部方向布局；
+flex-end：让某个子元素贴着底部方向布局；
+center：让某个子元素垂直居中布局；
+baseline：让某个子元素根据内容基线来布局；
+strech：这个是默认值，和flex-start值发挥的作用看上去一毛一样。
+
+-->
+<div class="box">
+	<div class="item1">order1<br>order1</div>
+	<div class="item2">order2<br>order2<br>order2</div>
+	<div class="item3">order3</div>
+</div>
+</body>
+</html>

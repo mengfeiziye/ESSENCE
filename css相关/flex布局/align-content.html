@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>align-content属性</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: stretch;
+	height: 500px;
+	width: 200px;
+	border: 1px solid #ccc;
+}
+.item1, .item2, .item3 {
+	background: #FFA500;
+	/*padding: 10px;*/
+	height: 100px;
+	width: 200px;
+	/*margin: 10px;*/
+	text-align: center;
+	box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在父元素中，十分怪异的一个属性，它有以下几个使用的前提
+
+1、需要父元素有高度，并且不能高于几个子元素高度之和；
+2、需要设置父元素中的子元素为纵向布局(column)；
+3、需要设置父元素中的子元素能换行显示(wrap)。
+
+-->
+<div class="box">
+	<div class="item1">order1</div>
+	<div class="item2">order2</div>
+	<div class="item3">order3</div>
+</div>
+</body>
+</html>

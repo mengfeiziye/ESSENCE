@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>justify-content属性</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+}
+.item1, .item2, .item3 {
+	background: #FFA500;
+	/*padding: 10px;*/
+	height: 100px;
+	width: 200px;
+	/*margin: 10px;*/
+	text-align: center;
+	box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在父元素中，它的作用是让子元素以怎样的方式横向布局显示
+
+flex-start：这个是默认值，让子元素横向布局，方向是从左往右；
+flex-end：让子元素横向布局，方向是从右往左；
+center：让子元素横向居中布局；
+space-between：让子元素横向布局，每个子元素平均分布在父元素；
+space-around：让子元素横向布局，每个子元素平均分布在父元素，并且在两端会有空间。
+
+-->
+<div class="box">
+	<div class="item1">order1</div>
+	<div class="item2">order2</div>
+	<div class="item3">order3</div>
+</div>
+</body>
+</html>

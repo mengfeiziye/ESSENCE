@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>flex-flow属性</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	display: flex;
+	display: -webkit-flex;
+	flex-flow: row-reverse wrap;
+}
+.item1, .item2, .item3 {
+	background: #FFA500;
+	padding: 10px;
+	height: 100px;
+	width: 80px;
+	margin-top: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在父元素中，它是flex-direction和flex-wrap这两个属性的缩写版本，
+但是在这场景下，flex-direction的属性值只能为row或者row-reverse，
+
+row wrap ：横向顺序布局，页面缩小时换行顺序显示；
+row wrap-reverse：横向顺序布局，页面缩小时换行反序显示；
+row-reverse wrap：横向反序布局，页面缩小时换行顺序显示。
+
+-->
+<div class="box">
+	<div class="item1">order1</div>
+	<div class="item2">order2</div>
+	<div class="item3">order3</div>
+</div>
+</body>
+</html>

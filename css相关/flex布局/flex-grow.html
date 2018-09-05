@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>flex-grow</title>
+<style>
+.box {
+	display: flex;
+	display: -webkit-flex;
+}
+.item1, .item2, .item3 {
+	background: #FFA500;
+	padding: 10px;
+	height: 100px;
+	margin-right: 10px;
+	text-align: center;
+	flex: 1;
+}
+.item1 {
+	flex-grow: 2;
+}
+.item2 {
+	flex-grow: 4;
+}
+</style>
+</head>
+<body>
+
+<!-- 
+
+定义在子元素中，是非常实用的一个属性，让子元素以几倍宽度拉伸，属性值的类型为number
+
+ -->
+
+<div class="box">
+	<div class="item1">两倍宽度</div>
+	<div class="item2">四倍宽度</div>
+	<div class="item3">一倍宽度</div>
+</div>
+</body>
+</html>
